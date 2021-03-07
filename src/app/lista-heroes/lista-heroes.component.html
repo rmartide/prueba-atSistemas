@@ -1,0 +1,22 @@
+<h1 class="titulo">Héroes</h1>
+<div>
+    <mat-form-field>
+        <mat-label>Filtrar héroes</mat-label>
+        <input matInput [formControl]="filterInput">
+      </mat-form-field>
+</div>
+<div class="lista">
+    <div *ngFor="let heroe of heroes$ | async" class="lista__heroe">
+        <div class="test">
+            <h2>
+                {{ heroe.nombre }}
+            </h2>
+            <span class="heroe__super-poderes">
+                {{ heroe.superPoder }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<mat-paginator (page)="cargarPagina($event)"  [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
