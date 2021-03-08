@@ -12,9 +12,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DatosEnMemoriaService } from './services/datos-en-memoria.service';
+import { FormHeroeComponent } from './form-heroe/form-heroe.component';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [AppComponent, ListaHeroesComponent],
+  declarations: [AppComponent, ListaHeroesComponent, FormHeroeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,6 +24,7 @@ import { DatosEnMemoriaService } from './services/datos-en-memoria.service';
     MatToolbarModule,
     MatPaginatorModule,
     MatInputModule,
+    MatButtonModule,
     ReactiveFormsModule,
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(DatosEnMemoriaService, {

@@ -14,6 +14,8 @@
             <span class="heroe__super-poderes">
                 {{ heroe.superPoder }}
             </span>
+            <button [routerLink]="'/heroes/' + heroe.id">Editar</button>
+            <button (click)="eliminarHeroe(heroe.id, heroe.nombre)">Eliminar</button>
         </div>
     </div>
 </div>

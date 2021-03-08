@@ -28,7 +28,7 @@ export class ApiService {
     return this.http.delete<Heroe>(`${this.apiUrl}/${id}`);
   }
 
-  añadirHeroe(heroe: string): Observable<Heroe>  {
+  añadirHeroe(heroe: Heroe): Observable<Heroe>  {
     return this.http.post<Heroe>(this.apiUrl, heroe);
   }
 

@@ -1,0 +1,10 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    button {
+        align-self:flex-start;
+    }
+    .mat-form-field {
+        margin-bottom: 20px;
+    }
+}

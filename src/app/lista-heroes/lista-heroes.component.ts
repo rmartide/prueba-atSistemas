@@ -1,8 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { PageEvent } from '@angular/material/paginator';
-import { Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Observable, pipe, Subject } from 'rxjs';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  mergeMap,
+  tap,
+} from 'rxjs/operators';
 import { Heroe } from '../model/Heroe';
 import { ApiService } from '../services/api.service';
 
@@ -13,18 +19,35 @@ import { ApiService } from '../services/api.service';
 })
 export class ListaHeroesComponent implements OnInit {
   filterInput = new FormControl();
-  heroes$: Observable<Heroe[]>;
+  heroes$ = new Subject<Heroe[]>();
+  cargando = false;
 
-  constructor(private apiService: ApiService) {
-    this.heroes$ = this.apiService.obtenerHeroes();
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.filterInput.valueChanges.pipe(
-      distinctUntilChanged(),
-      debounceTime(250)
-    );
+    this.filterInput.valueChanges
+      .pipe(
+        distinctUntilChanged(),
+        debounceTime(250),
+        mergeMap((nombre) => this.apiService.obtenerHeroesPorNombre(nombre))
+      )
+      .subscribe((heroes) => this.heroes$.next(heroes));
+    this.cargarHeroes();
+  }
+
+  cargarHeroes() {
+    this.apiService
+      .obtenerHeroes()
+      .subscribe((heroes) => this.heroes$.next(heroes));
   }
 
   cargarPagina({ pageIndex, pageSize }: PageEvent) {}
+  eliminarHeroe(id: number, nombre: string) {
+    const borrar = confirm(`¿Estás seguro de eliminar a ${nombre}?`);
+    if (borrar) {
+      this.apiService.borrarHeroe(id).subscribe(() => {
+        this.cargarHeroes();
+      });
+    }
+  }
 }
