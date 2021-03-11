@@ -1,16 +1,21 @@
-import { TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+import { AppModule } from '../app.module';
 import { DatosEnMemoriaService } from './datos-en-memoria.service';
 
 describe('DatosEnMemoriaService', () => {
   let service: DatosEnMemoriaService;
+  let fixture: MockedComponentFixture<DatosEnMemoriaService>;
+
+  beforeEach(() =>
+    MockBuilder(DatosEnMemoriaService, AppModule)
+  );
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(DatosEnMemoriaService);
+    fixture = MockRender(DatosEnMemoriaService);
+    service = fixture.point.componentInstance;
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+  it('should create', () => {
+    expect(service).toBeDefined();
   });
 });

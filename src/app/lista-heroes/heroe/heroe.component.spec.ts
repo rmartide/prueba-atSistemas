@@ -1,25 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
+import { AppModule } from '../../app.module';
 import { HeroeComponent } from './heroe.component';
+import { Heroe } from '../../model/Heroe';
+import { EventEmitter } from '@angular/core';
 
 describe('HeroeComponent', () => {
   let component: HeroeComponent;
-  let fixture: ComponentFixture<HeroeComponent>;
+  let fixture: MockedComponentFixture<HeroeComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ HeroeComponent ]
-    })
-    .compileComponents();
-  });
+  beforeEach(() =>
+    MockBuilder(HeroeComponent, AppModule)
+  );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeroeComponent);
-    component = fixture.componentInstance;
+    fixture = MockRender(HeroeComponent, {
+      heroe: {
+        nombre: 'Pepito',
+        superPoder: 'De los palotes'
+      } as Heroe,
+      eliminarHeroe: new EventEmitter()
+    });
+    component = fixture.point.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(component).toBeDefined();
   });
 });

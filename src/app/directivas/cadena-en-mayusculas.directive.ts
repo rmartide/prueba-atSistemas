@@ -4,7 +4,7 @@ import { Directive, ElementRef, HostListener } from '@angular/core';
   selector: '[appCadenaEnMayusculas]',
 })
 export class CadenaEnMayusculasDirective {
-  constructor(ref: ElementRef) {}
+  constructor() {}
   @HostListener('input', ['$event']) onInput($event: any) {
     $event.target.value = $event.target.value.toUpperCase();
   }
