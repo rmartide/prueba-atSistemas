@@ -14,9 +14,13 @@ import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { DatosEnMemoriaService } from './services/datos-en-memoria.service';
 import { FormHeroeComponent } from './form-heroe/form-heroe.component';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { CadenaEnMayusculasDirective } from './directivas/cadena-en-mayusculas.directive';
 
 @NgModule({
-  declarations: [AppComponent, ListaHeroesComponent, FormHeroeComponent],
+  declarations: [AppComponent, ListaHeroesComponent, FormHeroeComponent, CadenaEnMayusculasDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,6 +34,9 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientInMemoryWebApiModule.forRoot(DatosEnMemoriaService, {
       dataEncapsulation: false,
     }),
+    MatCardModule,
+    MatIconModule,
+    MatTooltipModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

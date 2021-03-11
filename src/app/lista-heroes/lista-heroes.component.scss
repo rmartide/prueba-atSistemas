@@ -2,24 +2,43 @@
   text-align: center;
 }
 
+.acciones {
+  display:flex;
+  justify-content: space-between;
+}
+
 .lista {
   display: flex;
   flex-wrap: wrap;
+  margin: -10px;
 }
 
 .lista__heroe {
   flex: 1 0 33.333333%;
   max-width: 33.333333%;
-  text-align: center;
 }
 
-.test { 
+.lista__nombre {
+  justify-content: center;
+  mat-card-title {
+    color: #7e57c2;
+  }
+}
+
+.lista__contenedor-interior { 
     padding: 30px;
+    margin:10px;
+    margin-bottom: 10px;
+    background: #f1f1f1;
+}
+
+.lista__acciones {
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 @media screen and (max-width: 850px) {
   .lista__heroe {
-    padding: 10px;
     flex: 1 0 50%;
     max-width: 50%;
   }
@@ -27,7 +46,6 @@
 
 @media screen and (max-width: 600px) {
   .lista__heroe {
-    padding: 10px;
     flex: 1 0 100%;
     max-width: 100%;
   }

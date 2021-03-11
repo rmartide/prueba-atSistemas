@@ -1,7 +1,7 @@
 <form [formGroup]="heroeForm" (ngSubmit)="onSubmit()" class="formulario">
     <mat-form-field>
         <mat-label>Nombre:</mat-label>
-        <input matInput formControlName="nombre">
+        <input matInput formControlName="nombre" appCadenaEnMayusculas>
         <mat-error *ngIf="nombre && nombre.invalid">El campo es obligatorio</mat-error>
     </mat-form-field>
 
@@ -10,5 +10,8 @@
         <textarea matInput formControlName="superPoder"></textarea>
         <mat-error *ngIf="superPoder && superPoder.invalid">El campo es obligatorio</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary">Guardar</button>
+    <div>
+        <button mat-raised-button color="primary">Guardar</button>
+        <button [routerLink]="'/heroes'" mat-raised-button >Cancelar</button>
+    </div>
 </form>
