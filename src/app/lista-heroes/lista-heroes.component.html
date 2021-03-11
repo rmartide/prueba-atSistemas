@@ -10,22 +10,8 @@
 </div>
 <div class="lista">
     <div *ngFor="let heroe of heroesPaginados$ | async" class="lista__heroe">
-        <mat-card class="lista__contenedor-interior">
-            <mat-card-header class="lista__nombre">
-                <mat-card-title>{{ heroe.nombre }}</mat-card-title>
-            </mat-card-header>
-            <mat-card-content class="heroe__super-poderes">
-                {{ heroe.superPoder }}
-            </mat-card-content>
-            <mat-card-actions class="lista__acciones">
-                <button mat-icon-button color="warn" (click)="eliminarHeroe(heroe.id, heroe.nombre)" matTooltip="Eliminar héroe">
-                    <mat-icon>delete</mat-icon>
-                </button>
-                <button mat-icon-button [routerLink]="'/heroes/' + heroe.id" matTooltip="Editar héroe">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </mat-card-actions>
-        </mat-card>
+        <app-heroe [heroe]="heroe" (eliminarHeroe)="eliminarHeroe($event)"></app-heroe>
+        
     </div>
 </div>
 

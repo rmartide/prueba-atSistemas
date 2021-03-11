@@ -59,10 +59,10 @@ export class ListaHeroesComponent implements OnInit {
     : this.cargarHeroesPorNombre(this.nombreFiltro);
   }
   
-  eliminarHeroe(id: number, nombre: string) {
-    const borrar = confirm(`¿Estás seguro de eliminar a ${nombre}?`);
+  eliminarHeroe(heroe: Heroe) {
+    const borrar = confirm(`¿Estás seguro de eliminar a ${heroe.nombre}?`);
     if (borrar) {
-      this.apiService.borrarHeroe(id).subscribe(() => {
+      this.apiService.borrarHeroe(heroe.id).subscribe(() => {
         this.cargarHeroes();
       });
     }

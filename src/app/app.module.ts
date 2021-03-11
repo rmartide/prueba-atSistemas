@@ -18,9 +18,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CadenaEnMayusculasDirective } from './directivas/cadena-en-mayusculas.directive';
+import { HeroeComponent } from './lista-heroes/heroe/heroe.component';
 
 @NgModule({
-  declarations: [AppComponent, ListaHeroesComponent, FormHeroeComponent, CadenaEnMayusculasDirective],
+  declarations: [AppComponent, ListaHeroesComponent, FormHeroeComponent, CadenaEnMayusculasDirective, HeroeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
