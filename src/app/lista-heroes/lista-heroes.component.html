@@ -1,19 +1,18 @@
-<h1 class="titulo">Héroes</h1>
+<h1 data-test="titulo" class="titulo">Héroes</h1>
 <div class="acciones">
-    <mat-form-field>
+    <mat-form-field data-test="filtro">
         <mat-label>Filtrar héroes</mat-label>
         <input matInput [formControl]="filterInput">
     </mat-form-field>
-    <button mat-icon-button color="primary" [routerLink]="'/heroes/nuevo'" matTooltip="Añadir héroe">
+    <button data-test="boton-añadir" mat-icon-button color="primary" [routerLink]="'/heroes/nuevo'" matTooltip="Añadir héroe">
         <mat-icon>add</mat-icon>
     </button>
 </div>
 <div class="lista">
     <div *ngFor="let heroe of heroesPaginados$ | async" class="lista__heroe">
-        <app-heroe [heroe]="heroe" (eliminarHeroe)="eliminarHeroe($event)"></app-heroe>
-        
+        <app-heroe data-test="heroe" [heroe]="heroe" (eliminarHeroe)="eliminarHeroe($event)"></app-heroe>
     </div>
 </div>
 
-<mat-paginator (page)="cargarPagina($event)" [pageIndex]="pagina" [length]="total" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" itemsPerPageLabel="Héroes por página">
+<mat-paginator data-test="paginador" (page)="cargarPagina($event)" [pageIndex]="pagina" [length]="total" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]" itemsPerPageLabel="Héroes por página">
 </mat-paginator>
