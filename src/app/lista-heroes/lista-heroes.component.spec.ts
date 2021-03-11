@@ -1,13 +1,12 @@
-import { MockBuilder, MockedComponentFixture, MockRender, ngMocks } from 'ng-mocks';
-
-import { ListaHeroesComponent } from './lista-heroes.component';
-import { AppModule } from '../app.module';
-import { ApiService } from '../services/api.service';
-import { of } from 'rxjs';
 import { PageEvent } from '@angular/material/paginator';
+import { MockBuilder, MockedComponentFixture, MockRender, ngMocks } from 'ng-mocks';
+import { of } from 'rxjs';
+import { AppModule } from '../app.module';
 import { Heroe } from '../model/Heroe';
-import { not } from '@angular/compiler/src/output/output_ast';
+import { ApiService } from '../services/api.service';
 import { HeroeComponent } from './heroe/heroe.component';
+import { ListaHeroesComponent } from './lista-heroes.component';
+
 
 describe('ListaHeroesComponent', () => {
   let component: ListaHeroesComponent;
