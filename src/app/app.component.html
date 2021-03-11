@@ -1,5 +1,6 @@
 <mat-toolbar class="barra-navegacion">
   <a mat-button routerLink="/heroes">La casa del héroe</a>
+  <mat-spinner class="spinner" diameter="45" *ngIf="(cargando$ | async) === true"></mat-spinner>
 </mat-toolbar>
 
 <div class="contenedor">

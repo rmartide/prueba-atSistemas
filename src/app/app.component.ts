@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { LoadingService } from './services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'prueba-atsistemas';
+  cargando$: Observable<boolean>;
+  constructor(private loadingService: LoadingService) {
+    this.cargando$ = loadingService.cargando$
+    .pipe(delay(0));
+  }
 }

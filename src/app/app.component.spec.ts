@@ -1,6 +1,7 @@
 import { MockBuilder, MockedComponentFixture, MockRender } from 'ng-mocks';
 import { AppComponent } from './app.component';
 import { AppModule } from './app.module';
+import { LoadingService } from './services/loading.service';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -8,6 +9,7 @@ describe('AppComponent', () => {
 
   beforeEach(() =>
     MockBuilder(AppComponent, AppModule)
+    .keep(LoadingService)
   );
 
   beforeEach(() => {

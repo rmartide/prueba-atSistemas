@@ -16,7 +16,8 @@
           "@env/*": [
               "environments/*"
           ]
-      }
+      },
+      "esModuleInterop": true
   },
   "files": [ // eliminar la referencia a test.ts ya que lo eliminamos
       "src/polyfills.ts"
@@ -24,5 +25,5 @@
   "include": [
       "src/**/*.spec.ts",
       "src/**/*.d.ts"
-  ]
+  ],
 }
