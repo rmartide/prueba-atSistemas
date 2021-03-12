@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'heroes/:id', component: FormHeroeComponent },
   { path: 'heroes/nuevo', component: FormHeroeComponent },
   { path: '', redirectTo: '/heroes', pathMatch: 'full' },
+  { path: '**', redirectTo: '/heroes', pathMatch: 'full' },
 ];
 
 @NgModule({
