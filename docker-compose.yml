@@ -1,0 +1,8 @@
+version: '3.3'
+
+services:
+
+  node:
+    build: .
+    ports:
+      - "9999:9999"

@@ -1,11 +1,13 @@
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Directive({
   selector: '[appCadenaEnMayusculas]',
 })
 export class CadenaEnMayusculasDirective {
+  @Input() control:any;
   constructor() {}
-  @HostListener('input', ['$event']) onInput($event: any) {
-    $event.target.value = $event.target.value.toUpperCase();
+  @HostListener('input', ['$event']) onInputChange($event: any) {
+    (this.control as FormControl).setValue($event.srcElement.value.toUpperCase());
   }
 }

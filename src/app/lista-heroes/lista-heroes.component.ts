@@ -28,13 +28,13 @@ export class ListaHeroesComponent implements OnInit {
 
   constructor(private apiService: ApiService) {
     this.heroesPaginados$ = this.heroes$.pipe(
-      tap((heroes) => {
+      tap((heroes: Heroe[]) => {
         if (this.paginaFueraDeRango(heroes.length)) {
           this.pagina = 0;
         }
         this.total = heroes.length;
       }),
-      map((heroes) =>
+      map((heroes: Heroe[]) =>
         heroes.slice(this.limite * this.pagina, this.limite * (this.pagina + 1))
       )
     );
@@ -45,7 +45,7 @@ export class ListaHeroesComponent implements OnInit {
       .pipe(
         distinctUntilChanged(),
         debounceTime(250),
-        tap((nombre) => (this.nombreFiltro = nombre))
+        tap((nombre: string) => (this.nombreFiltro = nombre))
       )
       .subscribe(this.cargarHeroesPorNombre.bind(this));
     this.cargarHeroes();
@@ -63,7 +63,7 @@ export class ListaHeroesComponent implements OnInit {
     const borrar = confirm(`¿Estás seguro de eliminar a ${heroe.nombre}?`);
     if (borrar) {
       this.apiService.borrarHeroe(heroe.id).subscribe(() => {
-        this.cargarHeroes();
+        this.cargarPagina({ pageIndex: this.pagina, pageSize: this.limite} as PageEvent);
       });
     }
   }
@@ -71,13 +71,13 @@ export class ListaHeroesComponent implements OnInit {
   private cargarHeroes() {
     this.apiService
     .obtenerHeroes()
-    .subscribe((heroes) => this.heroes$.next(heroes));
+    .subscribe((heroes: Heroe[]) => this.heroes$.next(heroes));
   }
 
   private cargarHeroesPorNombre(nombre: string) {
     this.apiService
     .obtenerHeroesPorNombre(nombre)
-    .subscribe((heroes) => this.heroes$.next(heroes));
+    .subscribe((heroes: Heroe[]) => this.heroes$.next(heroes));
   }
 
   private paginaFueraDeRango(cantidadHeroes: number): boolean {
